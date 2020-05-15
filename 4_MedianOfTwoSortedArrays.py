@@ -4,11 +4,16 @@
 
 class Solution:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
-        mergedList = sorted(nums1 + nums2)
         
-        if len(mergedList)%2:
-            return mergedList[len(mergedList)//2]
+        # create sorted list from nums1 and nums2
+        masterList = sorted(nums1 + nums2)
+        
+        # if list has odd number of elements, return middle number
+        if len(masterList)%2:
+            return masterList[len(masterList)//2]
+        
+        #if list length is even, average two middle numbers
         else:
-            return (mergedList[len(mergedList)//2] + mergedList[len(mergedList)//2 - 1])/2
+            return (masterList[len(masterList)//2] + mergedList[len(masterList)//2 - 1])/2
             
         
