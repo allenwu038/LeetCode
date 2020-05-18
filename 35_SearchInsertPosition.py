@@ -26,3 +26,21 @@ class Solution:
                 return i
         return len(nums)
     
+# solution 3
+# runtime: faster than 19.31% of submissions
+# memory: less than 5.97% of submissions
+
+class Solution:
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        if target in nums:
+            return nums.index(target)
+        # binary search 
+        lower = 0
+        upper = len(nums) - 1
+        while lower <= upper:
+            middle = (lower + upper)//2
+            if target < nums[middle]:
+                upper = middle - 1
+            else:
+                lower = middle + 1
+        return lower
