@@ -1,0 +1,22 @@
+# Python3
+# runtime: faster than 97.53% of submissions
+# memory: less than 5.55% of submissions
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+class Solution:
+    def removeElements(self, head: ListNode, val: int) -> ListNode:
+        # we set the dummy to deal with the case where the head.val == val
+        current = dummy = ListNode(0, head)
+        
+        while current:
+            # remove nodes where node.val == val
+            while current.next and current.next.val == val:
+                current.next = current.next.next
+            # iterate through the linked list
+            current = current.next
+        return dummy.next
