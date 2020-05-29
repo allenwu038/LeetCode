@@ -1,0 +1,19 @@
+# Python3
+# runtime: faster than 82.95% of submissions
+# memory: less than 9.38% of submissions
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def deleteNode(self, node):
+        """
+        :type node: ListNode
+        :rtype: void Do not return anything, modify node in-place instead.
+        """
+        # have the node take on attributes of the node.next so that the
+        # previous node effectively points to node.next and skips node
+        node.val, node.next = node.next.val, node.next.next
