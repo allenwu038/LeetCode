@@ -1,0 +1,34 @@
+# Python3
+
+# solution 1
+# runtime: faster than 71.31% of submissions
+# memory: less than 100% of submissions
+# NOTE: uses Floyd’s Cycle-Finding Algorithm with 2 pointers
+
+class Solution:
+    def hasCycle(self, head: ListNode) -> bool:
+        slowPtr = head
+        fastPtr = head
+        while (slowPtr and fastPtr and fastPtr.next):
+            slowPtr = slowPtr.next
+            fastPtr = fastPtr.next.next
+            # eventually, if there is a loop, the fastPtr and slowPtr will be at the same node
+            if slowPtr == fastPtr:
+                return True 
+        return False
+        
+# solution 2
+# runtime: faster than 71.31% of submissions
+# memory: less than 100% of submissions
+
+class Solution:
+    def hasCycle(self, head: ListNode) -> bool:
+        s = set()
+        while (head):
+            if head not in s:
+                s.add(head)
+            else:
+                # if node is in s, it means we've seen it before and there's a cycle
+                return True
+            head = head.next
+        return False
