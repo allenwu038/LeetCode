@@ -1,0 +1,24 @@
+# Python3
+# runtime: faster than 78.20% of submissions
+# memory: less than 79.31% of submissions
+# NOTE: 1 is not a prime number
+
+class Solution:
+    def countPrimes(self, n: int) -> int:
+        // no prime numbers less than 2
+        if n < 3:
+            return 0
+        else: 
+            // fill a list, assume all numbers < n are primes
+            primes = [1]*(n)
+            p = 2
+            while (p*p <= n):
+                // set multiples of values in list starting at 2 to 0
+                // thus marking them non-prime
+                if primes[p] == 1:
+                    for i in range(2*p, n, p):
+                        primes[i] = 0
+                p += 1
+            primes[0] = primes[1] = 0
+            // prime value indices will be marked by 1
+            return sum(primes)
