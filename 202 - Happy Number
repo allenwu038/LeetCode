@@ -1,0 +1,15 @@
+# Python3
+# runtime: faster than 75.83% of submissions
+# memory: less than 5.36% of submissions
+
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        s = set()
+        while n != 1:
+            n = sum([int(i)**2 for i in str(n)])
+            // if we have seen this number before and we haven't hit 1
+            // then we know we are in an infinite loop
+            if n in s:
+                return False
+            s.add(n)
+        return True
