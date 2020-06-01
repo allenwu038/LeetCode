@@ -1,0 +1,34 @@
+# Python3
+# runtime: faster than 67.81% of submissions
+# memory: less than 20.00% of submissions
+
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        // 2 str cannot be isomorphic if the lengths are not equal
+        if len(s) != len(t):
+            return False
+            
+        // create set to see if we've mapped from a char in s to this char in t before
+        tSet = set()
+        
+        // create a dictionary to store mappings that have been used 
+        d = dict()
+        
+        for i in range(len(s)):
+            // if we have mapped this char before, and it was not mapped to t[i]
+            // then there are multiple mappings, which isomorphic strings cannot have
+            if s[i] in d.keys():
+                if d.get(s[i]) != t[i]:
+                    return False  
+            else:
+                // we have not seen this char in s before, but the char it is mapped to 
+                // has already been mapped to something else
+                if t[i] in tSet:
+                    return False
+                    
+                // we have not encountered or mapped this char, add it the to dict and set
+                tSet.add(t[i])
+                d[s[i]] = t[i]      
+                
+        // since we have not encountered cases that renders our strings not isomorphic, they are isomorphic
+        return True
