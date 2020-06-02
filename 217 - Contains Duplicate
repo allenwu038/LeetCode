@@ -1,0 +1,13 @@
+# Python3
+# runtime: faster than 79.14% of submissions
+# memory: less than 28.30% of submissions
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        s = set()
+        for num in nums:
+            # if we've already seen this num, there must be a duplicate
+            if num in s:
+                return True
+            s.add(num)
+        return False
