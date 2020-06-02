@@ -1,0 +1,19 @@
+# Python3
+# runtime: faster than 96.74% of submissions
+# memory: less than 33.33% of submissions
+
+class Solution:
+    def containsNearbyAlmostDuplicate(self, nums: List[int], k: int, t: int) -> bool:
+        # if t is 0, there has to be a duplicate in order to return true
+        if t == 0 and len(nums) == len(set(nums)):
+            return False
+        else:
+            for idx, val in enumerate(nums):
+                # sliding window so indices never farther than k apart
+                for j in range(idx + 1, idx + k + 1):
+                    # sliding window has hit end of nums, break
+                    if j >= len(nums):
+                        break
+                    if abs(val - nums[j]) <= t:
+                        return True
+            return False
