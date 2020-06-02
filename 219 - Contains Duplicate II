@@ -1,0 +1,18 @@
+# Python3
+# runtime: faster than 44.74% of submissions
+# memory: less than 25.00% of submissions
+
+class Solution:
+    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
+        # create a dictionary to keep track of values we've seen and their index
+        mapping = {}
+        for i in range(len(nums)):
+            # if we've seen this value, check that the 
+            # difference between the indices is at most k
+            if nums[i] in mapping:
+                if i - mapping[nums[i]] <= k:
+                    return True
+            # if we're seeing this vaule for the first time
+            # add it to the dictionary with its index value
+            mapping[nums[i]] = i
+        return False
