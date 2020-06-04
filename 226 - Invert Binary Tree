@@ -1,0 +1,20 @@
+# Python3
+# runtime: faster than 74.14% of submissios
+# memory: less than 5.41% of submissions
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+class Solution:
+    def invertTree(self, root: TreeNode) -> TreeNode:
+        # the root exists, and so we switch its children 
+        # then recursively run invertTree on those children
+        if root:
+            root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)
+            return root
+        # if root does not exist, return None
+        return None
