@@ -1,0 +1,38 @@
+# Python3
+# runtime: faster than 82.23% of submissions
+# memory: less than 58.58% of submissions
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+    
+        // we are at the lowest common ancestor (LCA)
+        if root==None or root == p or root == q:
+            return root
+            
+        // look for p and q in the left subtree
+        recurseInLeftSubtree = self.lowestCommonAncestor(root.left, p, q)
+        
+        // look for p and q in the right subtree
+        recurseInRightSubtree = self.lowestCommonAncestor(root.right, p, q)
+        
+        // if p and q are in both left and right subtrees, we are at the LCA
+        if recurseInLeftSubtree and recurseInRightSubtree:
+            return root
+            
+        // if p and q are both in the right subtree, recurse on right subtree
+        elif recurseInRightSubtree:
+            return recurseInRightSubtree
+            
+        // if p and q are both in the left subtree, recurse on left subtree
+        elif recurseInLeftSubtree:
+            return recurseInLeftSubtree
+            
+        // p and q not in tree
+        return None
