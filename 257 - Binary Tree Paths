@@ -1,0 +1,31 @@
+# Python3
+
+# solution 1 - with helper function
+# runtime: faster than 35.83% of submissions
+# memory: less than 18.52% of submissions
+class Solution:
+    def binaryTreePaths(self, root: TreeNode) -> List[str]:
+        if not root: 
+            return [] 
+        self.pathList = []
+        self.helper(root, str(root.val))
+        return self.pathList
+    
+    def helper(self, node, path):
+        if not node.left and not node.right:
+            self.pathList.append(path)
+        if node.left:
+            self.helper(node.left, path + '->' + str(node.left.val))
+        if node.right:
+            self.helper(node.right, path + '->' + str(node.right.val))
+            
+# solution 2
+# runtime: faster than 66.16% of submissions
+# memory: less than 57.24% of submissions
+class Solution:
+    def binaryTreePaths(self, root: TreeNode) -> List[str]:
+        if not root: 
+            return []  
+        recurseLeft = [str(root.val) + '->' + path for path in self.binaryTreePaths(root.left)]        
+        recurseRight = ([str(root.val) + '->' + path for path in self.binaryTreePaths(root.right)])
+        return recurseLeft+recurseRight or [str(root.val)]
