@@ -1,0 +1,26 @@
+# Python3
+
+# solution 1: brute force
+# runtime: faster than 5.02% of submissions
+# memory: less than 95.11% of submissions
+
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+    
+        for i in range(0, len(nums)+1):
+            if i not in nums:
+                return i
+                break
+
+# solution 2: using expected sum
+# runtime: faster than 19.21% of submissions
+# memory: less than 47.35% of submissions
+
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        // find the expected, or arithmetic sum
+        n = len(nums)
+        expectedSum = n*(n+1)//2
+        // find the difference between that and the actual sum
+        return expectedSum-sum(nums)
+
