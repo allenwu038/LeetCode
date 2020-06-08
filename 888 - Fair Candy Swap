@@ -1,0 +1,17 @@
+# Python3
+# runtime: faster than 11.66% of submissions
+# memory: less than 27.94% of submissions
+
+# we can sum up Alice's candies, sum(A)
+# and sum up Bob's candies, sum(B)
+# let's have aSize be the candy we're taking from Alice
+# let bSize be the candy we're taking from Bob
+# then sum(A) - aSize + bSize = sum(B) + aSize - bSize
+# and bSize = aSize + ( sum(B) - sum(A) )//2 
+
+class Solution:
+    def fairCandySwap(self, A: List[int], B: List[int]) -> List[int]:
+        for aSize in set(A):
+            if aSize + (sum(B) - sum(A))//2 in B:
+                return [aSize, aSize + (sum(B) - sum(A))//2]
+    
