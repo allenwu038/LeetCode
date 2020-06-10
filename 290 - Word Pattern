@@ -1,0 +1,46 @@
+# Python3
+
+# solution 1 - using a dictionary and two sets
+# runtime: faster than 14.82% of submissions
+# memory: less than 99.95% of submissions
+
+class Solution:
+    def wordPattern(self, pattern: str, str: str) -> bool:
+        dic = dict()
+        wordList = str.split()
+        # there can't be a 1-to-1 mapping if the lengths aren't the same
+        if len(pattern) != len(wordList):
+            return False
+        # two sets to make sure mapping is 1-to-1
+        wordSet = set()
+        patternSet = set()
+        for i in range(len(pattern)):
+            if pattern[i] in dic:
+                if dic.get(pattern[i]) != wordList[i]:
+                    return False
+            dic[pattern[i]] = wordList[i]
+            wordSet.add(wordList[i])
+            patternSet.add(pattern[i])
+        return len(wordSet) == len(patternSet)
+        
+        
+# solution 2 - using two dictionaries
+# runtime: faster than 44.55% of submissions
+# memory: less than 29.50% of submissions
+
+class Solution:
+    def wordPattern(self, pattern: str, str: str) -> bool:
+        wordList = str.split()
+        if len(pattern) != len(wordList):
+            return False
+        
+        dict1 = dict()
+        dict2 = dict()
+        # zip to ensure parallel iteration and 1-to-1 mapping
+        for p, word in zip(pattern, wordList):
+            if (p in dict1 and dict1[p] != word) or (word in dict2 and dict2[word] != p):
+                return False
+            dict1[p], dict2[word] = word, p
+        return True
+            
+        
