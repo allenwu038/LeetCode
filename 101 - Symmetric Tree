@@ -1,0 +1,30 @@
+# Python3
+# runtime: faster than 91.39% of submissions
+# memory: less than 54.41% of submissions
+
+class Solution:
+
+    def isSymmetric(self, root: TreeNode) -> bool:
+        # base case
+        if not root:
+            return True
+        return self.recursiveHelper(root.left, root.right)
+    
+    
+    def recursiveHelper(self, leftSubtree, rightSubtree):
+        # base cases 
+        if rightSubtree == None and leftSubtree == None:
+            return True
+        elif leftSubtree == None and rightSubtree != None:
+            return False
+        elif rightSubtree == None and leftSubtree != None:
+            return False
+        
+        # nodes in symmetric places should be symmetric in value
+        if rightSubtree.val != leftSubtree.val:
+            return False
+        
+        else:
+            # calls to pairs of nodes that symmetric in location to see if they are symmetric in value
+            return self.recursiveHelper(leftSubtree.left, rightSubtree.right) and self.recursiveHelper(leftSubtree.right, rightSubtree.left)
+
