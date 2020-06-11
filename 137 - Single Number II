@@ -1,0 +1,36 @@
+# Python3
+
+# solution 1
+# runtime: faster than 23.01% of submissions
+# memory: less than 38.18% of submissions
+
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        nums.sort()
+        # skip by threes so that we pass by non-single number triples
+        for i in range(0, len(nums)-2, 3):
+            if nums[i] != nums[i+1]:
+                return nums[i]
+        return nums[len(nums) -1 ]
+
+
+# solution 2
+# runtime: faster than 27.22% of submissions
+# memory: less than 89.19% of submissions
+
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        hashmap = {}
+        
+        # iterate through nums, and track number of times each number appears
+        for num in nums:
+            if num in hashmap:
+                hashmap[num] += 1
+            else: 
+                hashmap[num] = 1 
+                
+        # return the one key in the hashmap that only appears once in nums
+        for key in hashmap:
+            if hashmap[key] == 1:
+                return key
+    
