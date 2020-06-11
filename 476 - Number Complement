@@ -1,0 +1,29 @@
+# Python3
+
+# solution 1: flipping the binary bits in place
+# runtime: faster than 37.52% of submissions
+# memory: less than 9.20% of submissions
+
+class Solution:
+    def findComplement(self, num: int) -> int:
+        binaryList = list(bin(num))
+        for i in range(2, len(binaryList)):
+            if binaryList[i] == '0':
+                binaryList[i] = '1'
+            else:
+                binaryList[i] = '0'
+        return int("".join(binaryList), 2)
+   
+ # solution 2: new string for resulting binary string, then convert to int
+ # runtime: faster than 37.52% of submissions
+ # memory: less than 63.55% of submissions
+ class Solution:
+    def findComplement(self, num: int) -> int:
+        binary = (bin(num))
+        res = ""
+        for i in binary[2:]:
+            if i == '0':
+                res += '1'
+            else:
+                res += '0'
+        return int(res, 2)
