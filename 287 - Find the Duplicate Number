@@ -15,8 +15,8 @@ class Solution:
                 return num
                 
 # solution 2 - treat question like there's a cycle    
-# runtime: faster than 83.96% of submissions
-# memory: less than 81.56% of submissions
+# runtime: faster than 94.60% of submissions
+# memory: less than 51.50% of submissions
 
 class Solution:
     def findDuplicate(self, nums: List[int]) -> int:
@@ -30,7 +30,7 @@ class Solution:
             fast = nums[nums[fast]]
             
         # find where the cycle starts
-        fast = 0
+        res = 0
         while (res!=slow):
             slow = nums[slow] 
             res = nums[res] 
