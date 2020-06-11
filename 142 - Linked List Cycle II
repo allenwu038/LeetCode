@@ -1,0 +1,17 @@
+# Python3
+
+# solution 1: use list to keep track of nodes we've already seen
+# runtime: faster than 5.09% of submissions
+# memory: less than 33.34% of submissions
+
+class Solution:
+    def detectCycle(self, head: ListNode) -> ListNode:
+        nodes = []
+        while (head):
+            // we've seen this node before, so this is the first node in the cycle
+            if head in nodes:
+                return head
+            else:
+                nodes.append(head)
+            head = head.next
+        return None
