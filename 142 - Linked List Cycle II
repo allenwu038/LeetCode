@@ -15,3 +15,32 @@ class Solution:
                 nodes.append(head)
             head = head.next
         return None
+        
+ 
+# solution 2
+# runtime: faster than 12.84% of submissions
+# memory: less than 95.15% of submissions
+
+class Solution:
+    def detectCycle(self, head: ListNode) -> ListNode:
+        if head == None or head.next == None:
+            return None
+        
+        slow = head.next
+        fast = head.next.next
+        
+        # enter into linked list
+        while (fast!=slow):
+            if slow == None or slow.next == None: return None
+            if fast == None or fast.next == None : return None
+            slow = slow.next
+            fast = fast.next.next
+            
+        # find where the cycle begins
+        res = head
+        while (res != slow):
+            slow = slow.next 
+            res = res.next
+        return res
+    
+
