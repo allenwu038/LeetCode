@@ -1,0 +1,21 @@
+# Python3
+# runtime: faster than 98.39% of submissions
+# memory: less than 5.29% of submissions
+
+# The guess API is already defined for you.
+# @param num, your guess
+# @return -1 if my number is lower, 1 if my number is higher, otherwise return 0
+# def guess(num: int) -> int:
+
+class Solution:
+    def guessNumber(self, n: int) -> int:
+        lower = 1
+        upper = n
+        # adjust lower and upper bounds of our guesses as we enter guesses
+        while lower < upper:
+            mid = (lower + upper)//2
+            if guess(mid) == 1:
+                lower = mid + 1
+            else:
+                upper = mid
+        return lower
