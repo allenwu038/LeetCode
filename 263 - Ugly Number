@@ -8,7 +8,7 @@ class Solution:
         if num < 1:
             return False
         factors = [2, 3, 5]
-        // divide num by each of our prime factors as many times as possible
+        # divide num by each of our prime factors as many times as possible
         for i in factors:
             while num%i == 0:
                 num = num//i   
