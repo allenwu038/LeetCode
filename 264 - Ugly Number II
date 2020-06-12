@@ -1,0 +1,31 @@
+# Python3
+# runtime: faster than 68.43% of submissions
+# memory: less than 21.44% of submissions
+
+class Solution:
+    def nthUglyNumber(self, n: int) -> int:
+    
+        # initialize a list for n ugly numbers
+        uglies = [0]*n
+        a, b, c = 0, 0, 0
+        
+        # 1 will be our first ugly number
+        uglies[0] = 1
+        
+        for i in range(1, n):
+        
+            # generate uglies and add the smallest to the uglies list
+            # so that we generate ugly numbers in order
+            uglies[i] = min(uglies[a]*2, uglies[b]*3, uglies[c]*5)
+            
+            # increment a, b, c so we move up the list 
+            # of ugly numbers to generate larger ugly numbers
+            if uglies[i] == uglies[a]*2: 
+                a += 1
+            if uglies[i] == uglies[b]*3: 
+                b += 1
+            if uglies[i] == uglies[c]*5: 
+                c += 1
+                
+        return uglies[n-1]
+ 
