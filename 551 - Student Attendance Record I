@@ -1,0 +1,35 @@
+# Python3
+
+
+# solution 1: turn str into list of chars
+# runtime: faster than 45.29% of submissions
+# memory: less than 63.08% of submissions
+
+class Solution:
+    def checkRecord(self, s: str) -> bool:
+        chars = list(s)
+        absentCount= 0
+        for i in range(len(chars)):
+            if chars[i] == "A":
+                absentCount += 1
+                if absentCount > 1:
+                    return False
+        for i in range(len(chars) - 2):
+            if chars[i] == chars[i+1] == chars[i+2] == "L":
+                return False
+        return True
+   
+# solution 2: keep s as string
+# runtime: faster than 72.32% of submissions
+# memory: less than 22.03% of submissions
+        
+class Solution:
+  def checkRecord(self, s: str) -> bool:
+      if 'A' in s:
+          if s.count('A') > 1:
+              return False
+      if 'LLL' in s:
+          return False
+      return True
+
+            
