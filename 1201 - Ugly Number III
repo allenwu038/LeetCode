@@ -1,0 +1,35 @@
+# Python3
+# runtime: faster than 12.60% of submissions
+# memory: less than 83.78% of submissions
+
+class Solution:
+    # binary search to find the number with n-1 ugly numbers less than it
+    # in other words, it is the nth ugly number
+    def nthUglyNumber(self, n: int, a: int, b: int, c: int) -> int:
+        lower = 1
+        upper = 2 * (10**9)
+        
+        while lower < upper:
+            mid = (lower + upper)//2
+            numMultiples = self.numMultiples(mid, a, b, c)
+            if numMultiples < n:
+                lower = mid + 1
+            else:
+                upper = mid
+        return lower   
+        
+        
+    def lcm(self, x, y):
+        # x * y = gcd(x,y) * lcm(x,y) so we can solve for the lcm
+        return x*y // math.gcd(x, y)
+    
+    # function to determine how many ugly numbers smaller than k exist
+    # using the Priciple of Inclusion Exclusion
+    def numMultiples(self, k, a, b, c):
+        ab = self.lcm(a, b)
+        bc = self.lcm(b, c)
+        ac = self.lcm(a, c)
+        
+        abc = self.lcm(ab, c)
+        
+        return (k//a + k//b + k//c) - (k//ab + k//bc + k//ac) + (k//abc)
