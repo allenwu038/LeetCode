@@ -1,0 +1,17 @@
+# Python3
+# runtime: faster than 78.35% of submissions
+# memory: less than 34.49% of submissions
+
+class Solution:
+    def detectCapitalUse(self, word: str) -> bool:
+        # when the word is all capitals
+        if word == word.upper():
+            return True
+        # when the word is all lowercase
+        elif word == word.lower():
+            return True
+        # when the first word is capitalized
+        elif word == word.capitalize():
+            return True
+        # in every other case, return false
+        return False
