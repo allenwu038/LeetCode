@@ -1,0 +1,22 @@
+# Python3
+# runtime: faster than 28.03% of submissions
+# memory: less than 78.27% of submissions
+
+class Solution:
+    def findRelativeRanks(self, nums: List[int]) -> List[str]:
+        ranks = [""] * len(nums)
+        medalsCount = 0
+        medals = ["Gold Medal","Silver Medal","Bronze Medal"]
+        numsDict = {}
+        
+        # the dictionary is formated as key: nums[i], value: index
+        for i in range(len(nums)):
+            numsDict[nums[i]] = i
+        
+        # sort the nums according to highest scores (with highest first)
+        for i in sorted(numsDict.keys())[::-1]:
+            # at the approporiate index, assign ranks
+            ranks[numsDict[i]] = medals[medalsCount] if medalsCount < 3 else str(medalsCount+1)
+            medalsCount += 1
+        
+        return ranks
