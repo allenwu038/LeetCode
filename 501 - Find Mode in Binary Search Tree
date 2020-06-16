@@ -1,0 +1,27 @@
+# Python3
+# runtime: faster than 55.62% of submissions
+# memory: less than 14.94% of submissions
+
+class Solution:
+    def findMode(self, root: TreeNode) -> List[int]:
+        if root is None:
+            return []
+        if root.left is None and root.right is None:
+            return [root.val]
+        # call on helper to build dictionary
+        nodesDict = self.buildDict({}, root)
+        highestFrequency = max(nodesDict.values())
+        # find all keys with highest freuqency
+        return [key for key in nodesDict if nodesDict[key] == highestFrequency]
+    
+    # helper function to traverse through tree and make a dictionary
+    # where the {key: value} pair is {node.val: frequency}
+    def buildDict(self, nodesDict, root):
+        if root:
+            if root.val in nodesDict.keys():
+                nodesDict[root.val] += 1  
+            else:
+                nodesDict[root.val] = 1
+            nodesDict = self.buildDict(nodesDict, root.left)
+            nodesDict = self.buildDict(nodesDict, root.right)
+        return nodesDict
