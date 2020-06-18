@@ -1,0 +1,26 @@
+# Python3
+# runtime: faster than 27.03% of submissions
+# memory: less than 78.45% of submissions
+
+class Solution:
+    def selfDividingNumbers(self, left: int, right: int) -> List[int]:
+        selfDividing = []
+        
+        # use the helper function to check if numbers in the
+        # given range are self dividing
+        for i in range(left, right + 1):
+            if self.isSelfDividing(i):
+                selfDividing.append(i)       
+        return selfDividing
+    
+    
+    def isSelfDividing(self, num: int):
+        digits = [int(x) for x in str(num)]
+        # a number cannot be self dividing if zero is in it
+        if 0 in digits:
+            return False
+        # a number is not self dividing if it's not divisible by one of its digits
+        for j in range(0, len(digits)):
+            if num%digits[j] != 0:
+                return False
+        return True
