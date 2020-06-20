@@ -1,0 +1,28 @@
+# Python3
+
+# solution 1: using sort
+# runtime: faster than 76.55% of submissions
+# memory: less than 6.59% of submissions
+
+class Solution:
+    def thirdMax(self, nums: List[int]) -> int:
+        nums = sorted(set(nums))
+        if len(nums) < 3:
+            return max(nums)
+        return nums[len(nums)-3]
+        
+        
+# solution 2: using heap
+# runtime: faster than 76.55% of submissions
+# memory: less than 7.93% of submissions
+
+import heapq
+class Solution:
+    def thirdMax(self, nums: List[int]) -> int:
+        heap = heapq.nlargest(3, set(nums))
+        if len(heap) == 3:
+            return heap[-1]
+        # the largest element will be at heap[0]
+        # and we want to return that if there
+        # are less than 3 distinct elements
+        return heap[0]
