@@ -1,0 +1,26 @@
+# Python3
+
+# solution 1: sorting the array
+# runtime: faster than 99.62% of submissions
+# memory: less than 17.52% of submissions
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        nums = sorted(nums)
+        return nums[len(nums)-k]
+  
+  
+# solution 2: priority queue
+# runtime: faster than 52.47% of submissions
+# memory: less than 89.46% of submissions
+
+import heapq
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        heap = []
+        for num in nums:
+            heapq.heappush(heap, num) 
+            if len(heap) > k:
+                heapq.heappop(heap)
+                
+        return heap[0]
+
