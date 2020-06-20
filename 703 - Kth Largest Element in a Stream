@@ -1,0 +1,34 @@
+# Python3
+# runtime: faster than 80.92% of submissions
+# memory: less than 88.18% of submissions
+
+# we can make use of a priority queue 
+class KthLargest:
+
+    def __init__(self, k: int, nums: List[int]):
+        self.nums = []
+        self.k = k
+        
+        # push numbers onto the heap
+        for num in nums:
+            self.add(num)
+
+    def add(self, val: int) -> int:
+        # push val onto the heap and maintain heap structure
+        heapq.heappush(self.nums, val)
+        
+        # if the heap length exceeds k, we can pop the smallest element
+        if len(self.nums) > self.k:
+            heapq.heappop(self.nums)
+            
+        # heap[0] is always the smallest element, and we are maintaining 
+        # a heap that is k elements at most, so heap[0] is then our 
+        # k'th largest element
+        
+        return self.nums[0]
+        
+
+
+# Your KthLargest object will be instantiated and called as such:
+# obj = KthLargest(k, nums)
+# param_1 = obj.add(val)
