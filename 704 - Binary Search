@@ -1,0 +1,17 @@
+# Python3
+# runtime: faster than 76.84% of submissions
+# memory: less than 5.22% of submissions
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        lower = 0
+        upper = len(nums) - 1
+        while lower <= upper:
+            idx = (lower + upper)//2
+            if target == nums[idx]:
+                return idx
+            if target < nums[idx]:
+                upper = idx - 1
+            else:
+                lower = idx + 1
+        return -1
