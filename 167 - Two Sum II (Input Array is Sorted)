@@ -1,0 +1,17 @@
+# Python3
+# runtime: faster than 49.21% of submissions
+# memory: less than 13.95% of submissions
+
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        # two pointers that move closer to one another while idx1 < idx2
+        idx1 = 0
+        idx2 = len(numbers) - 1
+        while (idx1 < idx2):
+            if (numbers[idx1] + numbers[idx2] == target):
+                return [idx1 + 1, idx2 + 1]
+            if (numbers[idx1] + numbers[idx2] < target):
+                idx1 += 1
+            if (numbers[idx1] + numbers[idx2] > target):
+                idx2 -= 1
+        return -1
