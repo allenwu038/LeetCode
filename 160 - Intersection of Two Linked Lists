@@ -1,0 +1,23 @@
+# Python3
+# runtime: faster than 94.35% of submissions
+# memory: less than 47.86% of submissions
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
+        if not headA or not headB:
+            return None
+        
+        ptrA = headA
+        ptrB = headB
+        
+        while ptrA != ptrB:
+            ptrA = headB if not ptrA else ptrA.next
+            ptrB = headA if not ptrB else ptrB.next
+ 
+        return ptrA
