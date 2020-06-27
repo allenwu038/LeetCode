@@ -1,0 +1,9 @@
+# Python3
+# runtime: faster than 42.60% of submissions
+# memory: less than 92.98% of submissions
+# NOTE: the winning situation is when it's the opponent's turn and there's four stones left, 
+        so as long as the game is not at a multiple of four, you can still win 
+
+class Solution:
+    def canWinNim(self, n: int) -> bool:
+        return n%4 != 0
