@@ -1,0 +1,20 @@
+# Pyton3
+
+# solution 1
+# runtime: faster than 56.01% of submissions
+# memory: less than 68.51% of submissions
+class Solution:
+    def hammingWeight(self, n: int) -> int:
+        count = 0
+        while n > 0:
+            count += n % 2
+            n //= 2
+        return count
+        
+
+# solution 2
+# runtime: faster than 56.01% of submissions
+# memory: less than 76.05% of submissions
+class Solution:
+    def hammingWeight(self, n: int) -> int:
+        return bin(n).count('1')
