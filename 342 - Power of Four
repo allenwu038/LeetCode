@@ -1,0 +1,11 @@
+# Python3
+# runtime: faster than 83.83% of submissions
+# memory: less than 77.87% of submissions
+
+class Solution:
+    def isPowerOfFour(self, num: int) -> bool:
+        if num == 1: 
+            return True
+        if num <= 0 or num % 4 != 0:
+            return False
+        return self.isPowerOfFour(num//4)
