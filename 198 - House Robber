@@ -1,0 +1,24 @@
+# Python3
+# runtime: faster than 28.39% of submissions
+# memory: less than 84.48% of submissions
+
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        n = len(nums)
+        if n == 0:
+            return 0
+        if n == 1:
+            return nums[0]
+        if n ==2:
+            return max(nums)
+        
+        maxSum = [0]*n
+        # maxSum[i] is the max $ we can make up to the ith house
+        maxSum[0] = nums [0]
+        maxSum[1] = max(nums[0], nums[1])
+        for i in range(2, n):
+            # we can either take this house and the max up to 
+            # two houses ago or the max up to the previous house
+            maxSum[i] = max(nums[i] + maxSum[i-2], maxSum[i-1])
+        return maxSum[n-1]
+        
