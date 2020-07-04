@@ -1,0 +1,23 @@
+# Python3
+# runtime: faster than 24.71% of submissions
+# memory: less than 41.08% of submissions
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        res = [1]*len(nums)
+        
+        # iterate through list forward 
+        # calculate product of all numbers up to i
+        leftProd = 1
+        for i in range(1, len(nums)):
+            leftProd *= nums[i-1]
+            res[i] *= leftProd
+         
+        # iterate through list backwards
+        # calculate product of all numbers after i
+        rightProd = 1
+        for i in range(len(nums)-2, -1, -1):
+            rightProd *= nums[i+1]
+            res[i] *= rightProd
+            
+        return res
