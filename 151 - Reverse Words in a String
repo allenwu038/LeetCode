@@ -1,0 +1,18 @@
+# Python3
+# runtime: faster than 59.78% of submissions
+# memory: less than 95.27% of submissions
+
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        # split string into list of words
+        words = s.split()
+        n = len(words)
+        # switch out words at corresponding positions of both 
+        # ends of the list, effectively reversing the words
+        for i in range(n//2):
+            temp = words[i]
+            words[i] = words[n-i-1]
+            words[n-i-1] = temp
+        # return the list as a string seperated by spaces
+        return " ".join(words)
+            
