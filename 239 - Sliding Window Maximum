@@ -1,0 +1,29 @@
+# Python3
+# runtime: faster than 11.77% of submissions
+# memory: less than 77.37% of submissions
+
+class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        if not nums:
+            return []
+        
+        deque = collections.deque()
+        res = []
+        
+        for i in range(len(nums)):
+            # make sure deque only holds elements within the boundary k
+            if deque and deque[0] == nums[i-k]:
+                deque.popleft()
+            # the largest element in the sliding window should be the leftmost element
+            # remove elements in deque less than the current element
+            while deque and deque[-1] < nums[i]:
+                deque.pop()
+            # add the current element into the deque   
+            deque.append(nums[i])
+            
+            # when we reach an index past the boundary k
+            # add the max eleent in the deque to res
+            if i > k-2:
+                res.append(deque[0])   
+                
+        return res
