@@ -1,0 +1,18 @@
+# Python3
+# runtime: faster than 81.98% of submissions
+# memory: less than 90.76% of submissions
+# NOTE: using binary search
+
+class Solution:
+    def isPerfectSquare(self, num: int) -> bool:
+        lower = 0
+        upper = num
+        while lower <= upper:
+            mid = (lower+upper)//2
+            if mid**2 == num:
+                return True
+            elif mid**2 > num:
+                upper = mid-1
+            else:
+                lower = mid+1
+        return False
