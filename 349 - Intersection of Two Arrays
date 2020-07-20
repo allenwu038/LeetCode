@@ -1,0 +1,23 @@
+# Python3
+
+# solution 1: brute force
+# runtime: faster than 5.01% of submissions
+# memory: less than 62.56% of submissions
+
+class Solution:
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        intersect = set()
+        for i in nums1:
+            for j in nums2:
+                if i==j:
+                    intersect.add(i)
+        return intersect
+        
+# solution 2: set operations
+# runtime: faster than 85.12% of submissions
+# memory: less than 17.65% of submissions
+
+class Solution:
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        return list(set(nums1) & set(nums2))
+        
