@@ -1,0 +1,44 @@
+# Python3
+
+# solution 1
+# runtime: faster than 68.20% of submissions
+# memory: less than 38.25% of submissions
+# NOTE: loop through string twice, once to record vowels
+# and once to replace vowels with corresponding reversed vowel
+
+class Solution:
+    def reverseVowels(self, s: str) -> str:
+        vowels = []
+        string = list(s)
+        for i in range(len(string)):
+            if string[i] in 'aieouAIEOU':
+                vowels.append(string[i])
+        idx = len(vowels) - 1
+        for i in range(len(string)):
+            if string[i] in 'aieouAIEOU':
+                string[i] = vowels[idx]
+                idx -= 1
+        return "".join(string)
+        
+# solution 2
+# runtime: faster than 48.65% of submissions
+# memory: less than 51.91% of submissions
+# NOTE: using two pointers
+
+class Solution:
+    def reverseVowels(self, s: str) -> str:
+        string = list(s)
+        vowels = "aieouAIEOU"
+        fwd = 0
+        back = len(string) - 1   
+        while fwd < back:
+            if string[fwd] not in vowels:
+                fwd += 1
+                continue        
+            if string[back] not in vowels:
+                back -= 1
+                continue             
+            string[fwd], string[back] = string[back], string[fwd]
+            fwd += 1
+            back -= 1        
+        return "".join(string)
