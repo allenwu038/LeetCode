@@ -1,0 +1,23 @@
+# Python3
+# runtime: faster than 93.50% of submissions
+# memory: less than 72.76% of submissions
+# NOTE: longest common subsequence video (https://www.youtube.com/watch?v=NnD96abizww)
+
+class Solution:
+    def minDistance(self, word1: str, word2: str) -> int:
+        w1, w2 = len(word1), len(word2)
+        if word1 == "":
+            return w2
+        if word2 == "":
+            return w1
+        # matrix to find the longest common subsequence
+        dp = [ [0] * (w2 + 1) for _ in range(w1 + 1) ]
+        for i in range(w1):
+            for j in range(w2):
+                if word1[i] == word2[j]:
+                    dp[i + 1][j + 1] = dp[i][j] + 1
+                else:
+                    dp[i + 1][j + 1] = max(dp[i][j + 1], dp[i + 1][j])
+        # find number of letters that must be deleted from either 
+        # word to be left with longest common subsequence
+        return (w1 - dp[w1][w2]) + (w2 - dp[w1][w2])
