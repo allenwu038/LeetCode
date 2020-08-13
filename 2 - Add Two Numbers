@@ -1,0 +1,25 @@
+# Python3
+# runtime: faster than 68.53% of submissions
+# memory: less than 46.98% of submissions
+
+class Solution:
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        carry = 0
+        sum = 0
+        res = head = ListNode(0)
+        # sum up l1.val, l2.val, and carry
+        while l1 or l2 or carry:
+            if l1:
+                sum += l1.val
+                l1 = l1.next
+            if l2:
+                sum += l2.val
+                l2 = l2.next
+            sum += carry
+            # use divmod to do carry addition
+            carry, val = divmod(sum, 10)
+            # reset sum
+            sum = 0
+            res.next = ListNode(val)
+            res = res.next
+        return head.next
