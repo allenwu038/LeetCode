@@ -1,0 +1,42 @@
+# Python3
+
+# solution 1: brute force
+# runtime: faster than 8.69% of submissions
+# memory: less than 50.20% of submissions
+
+class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        intersect = []
+        if len(nums1) == min(len(nums1), len(nums2)):
+            smaller, bigger = nums1, nums2
+        else:
+            smaller, bigger = nums2, nums1
+        for i in smaller:
+            for j in bigger:
+                if i==j:
+                    intersect.append(i)
+                    bigger.remove(i)
+                    break
+        return intersect
+        
+# solution 2: using a dictionary to keep count
+# runtime: faster than 80.10% of submissions
+# memory: less than 61.33% of submissions
+
+class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        countDict = {}
+        intersect = []
+        
+        for num in nums1:
+            if num in countDict:
+                countDict[num] +=  1
+            else:
+                countDict[num] = 1
+
+        for num in nums2:
+            if num in countDict and countDict[num] > 0:
+                intersect.append(num)
+                countDict[num] -= 1
+                
+        return intersect
