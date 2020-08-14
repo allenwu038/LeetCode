@@ -1,0 +1,29 @@
+# Python3
+
+# solution 1
+# runtime: faster than 58.25% of submissions
+# memory: less than 5.14% of submissions
+
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        noteList = list(ransomNote)
+        magazineList = list(magazine)
+        for char in noteList:
+            if char in magazineList:
+                magazineList.remove(char)
+            else:
+                return False
+        return True
+        
+# solution 2
+# runtime: faster than 99.10% of submissions
+# memory: less than 98.01% of submissions
+
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        for char in ransomNote:
+            if char in magazine:
+                magazine = magazine.replace(char, "", 1)
+            else:
+                return False
+        return True
